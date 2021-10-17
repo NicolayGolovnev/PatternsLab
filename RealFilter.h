@@ -5,20 +5,16 @@
 #ifndef PATTERNS_REALFILTER_H
 #define PATTERNS_REALFILTER_H
 
-#include <string>
-#include "Algorithm.h"
-#include "Algorithms.h"
 #include "Filter.h"
-
-using namespace std;
+#include "Delegation/Algorithms.h"
 
 class RealFilter : public Filter {
 private:
-    string analyzeAlgorithm;
+    std::string analyzeAlgorithm;
 public:
     RealFilter();
-    RealFilter(string init);
-    void setAlgorithm(string setter);
+    RealFilter(std::string init);
+    void setAlgorithm(std::string setter);
     void getResult();
 };
 
