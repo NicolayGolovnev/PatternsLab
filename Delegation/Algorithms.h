@@ -10,17 +10,23 @@
 
 class BlackList : public Algorithm {
 public:
-    void runAlgorithm();
+    void runAlgorithm() {
+        printf("BlackList algorithm - running!\n");
+    }
 };
 
 class ContentFiltering : public Algorithm {
 public:
-    void runAlgorithm();
+    void runAlgorithm() {
+        printf("Content filtering algorithm - running!\n");
+    }
 };
 
 class AnalyzeMessageFields : public Algorithm {
 public:
-    void runAlgorithm();
+    void runAlgorithm() {
+        printf("Analyze message fields algorithm - running!\n");
+    }
 };
 
 #endif //PATTERNS_ALGORITHMS_H
