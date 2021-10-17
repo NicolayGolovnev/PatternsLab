@@ -1,9 +1,8 @@
-#include <iostream>
 #include "Delegation/Delegate.h"
 #include "Proxy/Proxy.h"
+#include "Adapter/Adapter.h"
 
 int main() {
-    testDelegate();
-    testProxy();
+    testAdapter();
     return 0;
 }
