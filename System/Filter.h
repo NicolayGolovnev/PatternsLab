@@ -6,7 +6,7 @@
 #define PATTERNS_FILTER_H
 
 #include "../Delegation/Algorithm.h"
-#include <string>
+#include <cstring>
 
 class Filter{
 protected:

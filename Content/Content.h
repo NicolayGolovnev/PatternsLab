@@ -5,7 +5,7 @@
 #ifndef PATTERNS_CONTENT_H
 #define PATTERNS_CONTENT_H
 
-#include <string>
+#include <cstring>
 
 class Content {
 public:

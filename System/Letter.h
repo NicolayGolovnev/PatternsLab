@@ -5,7 +5,7 @@
 #ifndef PATTERNS_LETTER_H
 #define PATTERNS_LETTER_H
 
-#include <string>
+#include <cstring>
 #include <list>
 #include "../Content/Content.h"
 

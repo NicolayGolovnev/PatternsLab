@@ -5,6 +5,7 @@
 #ifndef PATTERNS_REALFILTER_H
 #define PATTERNS_REALFILTER_H
 
+#include <cstring>
 #include "Filter.h"
 #include "../Delegation/Algorithms.h"
 
@@ -28,7 +29,7 @@ public:
             algorithm = new AnalyzeMessageFields();
     }
     void setAlgorithm(std::string setter) { analyzeAlgorithm = setter; }
-    void getResult() { algorithm->runAlgorithm(); }
+    void getResult() override { algorithm->runAlgorithm(); }
 };
 
 #endif //PATTERNS_REALFILTER_H

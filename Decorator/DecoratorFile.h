@@ -12,7 +12,7 @@ protected:
     Content* content;
 public:
     DecoratorFile(Content* content) : content(content) {}
-    void getContent() {
+    void getContent() override {
         content->getContent();
     }
 };

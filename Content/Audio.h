@@ -17,7 +17,7 @@ public:
     Audio(std::string init) {
         value = init;
     }
-    void getContent() {
+    void getContent() override {
         std::printf("Audio: %s\n", value.c_str());
     }
 };

@@ -5,7 +5,7 @@
 #ifndef PATTERNS_OUTSIDEPROTECTION_H
 #define PATTERNS_OUTSIDEPROTECTION_H
 
-#include <string>
+#include <cstring>
 
 class OutsideProtection {
 private:

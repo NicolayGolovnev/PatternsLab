@@ -10,21 +10,21 @@
 
 class BlackList : public Algorithm {
 public:
-    void runAlgorithm() {
+    void runAlgorithm() override {
         printf("BlackList algorithm - running!\n");
     }
 };
 
 class ContentFiltering : public Algorithm {
 public:
-    void runAlgorithm() {
+    void runAlgorithm() override {
         printf("Content filtering algorithm - running!\n");
     }
 };
 
 class AnalyzeMessageFields : public Algorithm {
 public:
-    void runAlgorithm() {
+    void runAlgorithm() override {
         printf("Analyze message fields algorithm - running!\n");
     }
 };

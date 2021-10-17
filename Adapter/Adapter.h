@@ -22,7 +22,7 @@ public:
     Adapter(OutsideProtection* protection) { adaptable = protection; }
     ~Adapter() { delete adaptable; }
 
-    void getResult() {
+    void getResult() override {
         this->initProtect();
     }
 

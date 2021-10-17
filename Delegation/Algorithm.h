@@ -5,7 +5,7 @@
 #ifndef PATTERNS_ALGORITHM_H
 #define PATTERNS_ALGORITHM_H
 
-#include <string>
+#include <cstring>
 
 class Algorithm {
 public:
