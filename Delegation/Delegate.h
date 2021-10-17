@@ -5,7 +5,7 @@
 #ifndef PATTERNS_DELEGATE_H
 #define PATTERNS_DELEGATE_H
 
-#include "../RealFilter.h"
+#include "../System/RealFilter.h"
 
 void testDelegate() {
     std::printf("##########\tDELEGATION\t##########\n");

@@ -5,7 +5,7 @@
 #ifndef PATTERNS_FILTER_H
 #define PATTERNS_FILTER_H
 
-#include "Delegation/Algorithm.h"
+#include "../Delegation/Algorithm.h"
 #include <string>
 
 class Filter{

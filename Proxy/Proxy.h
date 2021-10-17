@@ -5,7 +5,7 @@
 #ifndef PATTERNS_PROXY_H
 #define PATTERNS_PROXY_H
 
-#include "../RealFilter.h"
+#include "../System/RealFilter.h"
 #include "ProxyFilter.h"
 
 void testProxy() {

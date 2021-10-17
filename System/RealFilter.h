@@ -6,7 +6,7 @@
 #define PATTERNS_REALFILTER_H
 
 #include "Filter.h"
-#include "Delegation/Algorithms.h"
+#include "../Delegation/Algorithms.h"
 
 class RealFilter : public Filter {
 private:

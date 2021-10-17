@@ -7,7 +7,7 @@
 
 
 #include "OutsideProtection.h"
-#include "../Filter.h"
+#include "../System/Filter.h"
 
 class Adapter : public Filter {
 private:

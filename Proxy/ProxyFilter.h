@@ -5,8 +5,8 @@
 #ifndef PATTERNS_PROXYFILTER_H
 #define PATTERNS_PROXYFILTER_H
 
-#include "../Filter.h"
-#include "../RealFilter.h"
+#include "../System/Filter.h"
+#include "../System/RealFilter.h"
 
 class ProxyFilter : public Filter {
 private:

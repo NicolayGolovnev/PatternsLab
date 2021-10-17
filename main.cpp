@@ -1,8 +1,9 @@
 #include "Delegation/Delegate.h"
 #include "Proxy/Proxy.h"
 #include "Adapter/Adapter.h"
+#include "Decorator/Decorator.h"
 
 int main() {
-    testAdapter();
+    testDecorator();
     return 0;
 }
