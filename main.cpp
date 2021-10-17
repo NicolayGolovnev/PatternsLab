@@ -6,6 +6,8 @@
 #include "Composite/Component.h"
 #include "Composite/User.h"
 #include "Composite/Composite.h"
+#include "System/Letter.h"
+#include "Content/Text.h"
 
 void getListOfUser() {
     std::cout << "##########\tCOMPOSITE\t###########\n";
@@ -32,7 +34,35 @@ void getListOfUser() {
     delete group1;
 }
 
+void testIterator() {
+    std::cout << "##########\tITERATOR\t###########\n";
+    Content* c1 = new Audio();
+    Content* c2 = new Audio("Madonna.mp3");
+    Content* c3 = new Text("Tolstoy");
+    Content* c4 = new Audio("Hohotach.mp3");
+    Content* c5 = new Picture();
+
+    Letter* letter = new Letter();
+    letter->insertContent(c1);
+    letter->insertContent(c2);
+    letter->insertContent(c3);
+    letter->insertContent(c4);
+    letter->insertContent(c5);
+    Iterator<Content*>* iter = letter->createIterator();
+    for (iter->first(); iter->hasNext(); iter->next()){
+        Content* c = iter->getCur();
+        c->getContent();
+    }
+    std::cout << "##########\t########\t###########\n";
+    delete c1;
+    delete c2;
+    delete c3;
+    delete c4;
+    delete c5;
+    delete letter;
+}
+
 int main() {
-    getListOfUser();
+    testIterator();
     return 0;
 }

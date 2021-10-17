@@ -5,7 +5,7 @@
 #ifndef PATTERNS_COMPONENT_H
 #define PATTERNS_COMPONENT_H
 
-#include <cstring>
+#include <string>
 
 class Component {
 protected:
