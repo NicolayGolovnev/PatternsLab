@@ -7,7 +7,7 @@
 
 enum FilterResult {
     NOT_SPAM,
-    UNLIKELY,
+    SMALL,
     MAYBE,
     PROBABLY,
     SPAM

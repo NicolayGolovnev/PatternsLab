@@ -7,7 +7,7 @@
 #include "Composite/Composite.h"
 #include "System/Letter.h"
 #include "Content/Text.h"
-#include "DecoratorFilter/Decorator.h"
+#include "Decorator/Decorator.h"
 #include "Content/Audio.h"
 #include "Content/Picture.h"
 
@@ -65,6 +65,6 @@ void testIterator() {
 }
 
 int main() {
-    testDelegate();
+    testDecoratorFilter();
     return 0;
 }

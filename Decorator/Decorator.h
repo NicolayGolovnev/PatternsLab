@@ -5,21 +5,22 @@
 #ifndef PATTERNS_DECORATOR_H
 #define PATTERNS_DECORATOR_H
 
-#include "../Content/Content.h"
-#include "../Content/Audio.h"
-#include "../Content/Picture.h"
-#include "ContentFile.h"
+#include "FilterPercentWrapper.h"
+#include "../System/RealFilter.h"
+#include "FilterRecomendationWrapper.h"
 
-void testDecorator() {
-    std::printf("Made a 2 default contents: audio and picture\n");
-    Content* audioFile = new Audio("Shrek_2.mp3");
-    audioFile->getContent();
-    Content* pictureFile = new Picture();
-    pictureFile->getContent();
+void testDecoratorFilter() {
+    std::printf("Made a 2 default filter: BlackList and ContentFiltering\n");
+    Filter* blackListFilter = new RealFilter("BlackList");
+    blackListFilter->getResult();
+    Filter* contentFilteringFilter = new RealFilter("ContentFiltering");
+    contentFilteringFilter->getResult();
 
-    std::printf("\nNow made a decorator for audio file\n");
-    Content* decorator1 = new ContentFile(audioFile);
-    decorator1->getContent();
+    std::printf("\nNow made decorators for this filters\n");
+    Filter* decorator1 = new FilterPercentWrapper(new FilterRecomendationWrapper(blackListFilter));
+    decorator1->getResult();
+    Filter* decorator2 = new FilterPercentWrapper(new FilterRecomendationWrapper(contentFilteringFilter));
+    decorator2->getResult();
 }
 
 #endif //PATTERNS_DECORATOR_H
