@@ -2,14 +2,16 @@
 #include "Delegation/Delegate.h"
 #include "Proxy/Proxy.h"
 #include "Adapter/Adapter.h"
-#include "Decorator/Decorator.h"
 #include "Composite/Component.h"
 #include "Composite/User.h"
 #include "Composite/Composite.h"
 #include "System/Letter.h"
 #include "Content/Text.h"
+#include "DecoratorFilter/Decorator.h"
+#include "Content/Audio.h"
+#include "Content/Picture.h"
 
-void getListOfUser() {
+void testComposite() {
     std::cout << "##########\tCOMPOSITE\t###########\n";
     std::cout << "Make a 1 user\n";
     Component* user1 = new User("ADEPT", "5");
@@ -51,7 +53,7 @@ void testIterator() {
     Iterator<Content*>* iter = letter->createIterator();
     for (iter->first(); iter->hasNext(); iter->next()){
         Content* c = iter->getCur();
-        c->getContent();
+        std::printf("%s", c->getContent().c_str());
     }
     std::cout << "##########\t########\t###########\n";
     delete c1;
@@ -63,6 +65,6 @@ void testIterator() {
 }
 
 int main() {
-    testIterator();
+    testDelegate();
     return 0;
 }

@@ -9,7 +9,7 @@
 
 class Content {
 public:
-    virtual void getContent() = 0;
+    virtual std::string getContent() = 0;
 };
 
 #endif //PATTERNS_CONTENT_H

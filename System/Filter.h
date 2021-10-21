@@ -12,10 +12,12 @@ protected:
     Algorithm* algorithm;
 public:
     Filter(){}
+    ~Filter() {}
 
-    virtual void getResult() {
-        algorithm->runAlgorithm();
+    virtual int getResult() {
+        return algorithm->runAlgorithm();
     }
+//    virtual std::string getAlgorithm() {}
 };
 
 #endif //PATTERNS_FILTER_H

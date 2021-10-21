@@ -9,7 +9,7 @@
 
 class Algorithm {
 public:
-    virtual void runAlgorithm() = 0;
+    virtual int runAlgorithm() = 0;
 };
 
 

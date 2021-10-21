@@ -29,7 +29,7 @@ public:
             algorithm = new AnalyzeMessageFields();
     }
     void setAlgorithm(std::string setter) { analyzeAlgorithm = setter; }
-    void getResult() override { algorithm->runAlgorithm(); }
+    int getResult() override { return algorithm->runAlgorithm(); }
 };
 
 #endif //PATTERNS_REALFILTER_H

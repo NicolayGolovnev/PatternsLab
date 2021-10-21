@@ -24,7 +24,7 @@ public:
     std::string getSource() { return source; }
     void setEmail(std::string _email) { email = _email; }
 
-    void runProtection() {
+    std::string runProtection() {
         std::printf("Initial protocol of protect: source - %s,\temail - %s\n", source.c_str(), email.c_str());
         std::printf("Running...\n");
         std::printf("Running...38\n");
@@ -32,6 +32,7 @@ public:
         std::printf("Running...91\n");
         std::printf("Running...99\n");
         std::printf("Analyzing complete: source is protected!\n");
+        return "Source is protected!";
     }
 };
 

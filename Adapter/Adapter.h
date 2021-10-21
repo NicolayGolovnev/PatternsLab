@@ -5,30 +5,33 @@
 #ifndef PATTERNS_ADAPTER_H
 #define PATTERNS_ADAPTER_H
 
-
 #include "OutsideProtection.h"
 #include "../System/Filter.h"
 
 class Adapter : public Filter {
 private:
     OutsideProtection* adaptable;
-    void initProtect() {
+    int initProtect() {
         std::printf("Initial protocol of initProtect: source - %s,\temail - [DATA DELETED]\n", adaptable->getSource().c_str());
         std::printf("Inititial run of outside protection - Initial complete\n");
-        adaptable->runProtection();
+        if (adaptable->runProtection() == "Source is protected!")
+            return 200;
+        else
+            return 404;
     }
 public:
     Adapter() { adaptable = new OutsideProtection(); }
     Adapter(OutsideProtection* protection) { adaptable = protection; }
     ~Adapter() { delete adaptable; }
 
-    void getResult() override {
-        this->initProtect();
+    int getResult() override {
+        return this->initProtect();
     }
 
 };
 
 void testAdapter() {
+    std::printf("##########\tADAPTER\t##########\n");
     OutsideProtection* protection1 = new OutsideProtection();
     std::printf("Run protection1 without source and email\n");
     protection1->runProtection();
@@ -44,6 +47,7 @@ void testAdapter() {
     std::printf("Run filter2 by protection2\n");
     Filter* filter2 = new Adapter(protection2);
     filter2->getResult();
+    std::printf("##########\t#######\t##########\n");
 }
 
 #endif //PATTERNS_ADAPTER_H

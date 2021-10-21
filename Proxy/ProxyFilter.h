@@ -24,9 +24,9 @@ public:
             delete filter;
         filter = inpFilter;
     }
-    virtual void getResult() override {
+    virtual int getResult() override {
         log();
-        filter->getResult();
+        return filter->getResult();
     }
 };
 

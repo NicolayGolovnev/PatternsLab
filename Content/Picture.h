@@ -17,8 +17,8 @@ public:
     Picture(std::string init) {
         value = init;
     }
-    void getContent() override {
-        std::printf("Picture: %s\n", value.c_str());
+    std::string getContent() override {
+        return "Picture: " + value + "\n";
     }
 };
 

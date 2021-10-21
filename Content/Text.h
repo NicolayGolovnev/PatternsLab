@@ -17,8 +17,8 @@ public:
     Text(std::string init) {
         value = init;
     }
-    void getContent() override {
-        std::printf("Text: %s\n", value.c_str());
+    std::string getContent() override {
+        return "Text: " + value + "\n";
     }
 };
 
