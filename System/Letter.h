@@ -9,10 +9,11 @@
 #include "../Content/Content.h"
 #include "../Iterator/IterableCollection.h"
 #include "../Iterator/IteratorContent.h"
+#include "../Prototype/ClonableCollection.h"
 
 using namespace std;
 
-class Letter : public IterableCollection{
+class Letter : public IterableCollection, public ClonableCollection {
 private:
     string sender;
     list<string>* recipientList;
@@ -23,8 +24,8 @@ public:
     Letter() {
         sender = "none";
         recipientList = new list<string>();
-        hiddenInfo = "";
-        title = "test";
+        hiddenInfo = "none";
+        title = "Empty letter";
         content = new vector<Content*>();
     }
 //    ~Letter() { delete recipientList; delete content; }
@@ -49,8 +50,10 @@ public:
         for (Content* c : *content)
             listCont += c->getContent();
         return "Letter[\n\tsender=" + sender + "\n\trecipients=" + listRec + "\n\thiddenInfo=" + hiddenInfo +
-            "\n\ttitle=" + title + "\n\tcontents=" + listCont + "\n]\n";
+            "\n\ttitle=" + title + "\n\tcontents=" + listCont + "]\n";
     }
+
+    Letter* clone() override { return new Letter(*this); }
 };
 
 #endif //PATTERNS_LETTER_H

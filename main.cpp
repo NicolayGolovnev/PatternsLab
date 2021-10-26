@@ -1,6 +1,6 @@
 #include "TestPatterns.h"
 
 int main() {
-    testBuilder();
+    testPrototype();
     return 0;
 }

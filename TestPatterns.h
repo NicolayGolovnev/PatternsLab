@@ -185,5 +185,21 @@ void testBuilder() {
     cout << "##########\t#######\t##########" << endl;
 }
 
+void testPrototype() {
+    cout << "##########\tPROTOTYPE\t##########" << endl;
+    cout << "Create a empty letter: ";
+    Letter* letter = new Letter();
+    cout << letter->toString();
+
+    cout << "Try a clone this letter to another" << endl;
+    Letter* clone = letter->clone();
+    cout << clone->toString();
+
+    cout << "Add a hidden info to the first letter and lets out both letters" << endl;
+    letter->setHiddenInfo("Prototype's pattern test");
+    cout << "1. " << letter->toString();
+    cout << "2. " << clone->toString();
+    cout << "##########\t#########\t##########" << endl;
+}
 
 #endif // PATTERNS_TESTPATTERNS_H
