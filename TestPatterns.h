@@ -20,9 +20,13 @@
 #include "Content/Text.h"
 #include "Content/Picture.h"
 #include "System/Letter.h"
+#include "Builder/LetterBuilder.h"
+#include "Builder/Director.h"
+
+using namespace std;
 
 void testDelegate() {
-    std::printf("##########\tDELEGATION\t##########\n");
+    printf("##########\tDELEGATION\t##########\n");
     RealFilter* rf1 = new RealFilter("ContentFiltering");
     rf1->getResult();
 
@@ -32,7 +36,7 @@ void testDelegate() {
     RealFilter* rf3 = new RealFilter();
     rf3->getResult();
 
-    std::printf("##########\t##########\t##########\n\n");
+    printf("##########\t##########\t##########\n\n");
 
     delete rf1;
     delete rf2;
@@ -40,7 +44,7 @@ void testDelegate() {
 }
 
 void testProxy() {
-    std::printf("\a##########\tPROXY\t##########\n");
+    printf("\a##########\tPROXY\t##########\n");
     RealFilter* filter1 = new RealFilter("ContentFiltering");
     ProxyFilter* proxyFilter = new ProxyFilter();
 
@@ -55,66 +59,66 @@ void testProxy() {
     filter1->getResult();
     printf("Proxy filter: ");
     proxyFilter->getResult();
-    std::printf("##########\t#####\t##########\n\n");
+    printf("##########\t#####\t##########\n\n");
 
     delete filter1;
     delete proxyFilter;
 }
 
 void testAdapter() {
-    std::printf("##########\tADAPTER\t##########\n");
+    printf("##########\tADAPTER\t##########\n");
     OutsideProtection* protection1 = new OutsideProtection();
-    std::printf("Run protection1 without source and email\n");
+    printf("Run protection1 without source and email\n");
     protection1->runProtection();
 
-    std::printf("Run filter1 by protection1\n");
+    printf("Run filter1 by protection1\n");
     Filter* filter1 = new Adapter(protection1);
     filter1->getResult();
 
     OutsideProtection* protection2 = new OutsideProtection("my source", "test@test.test");
-    std::printf("\nRun protection2 with source and email\n");
+    printf("\nRun protection2 with source and email\n");
     protection2->runProtection();
 
-    std::printf("Run filter2 by protection2\n");
+    printf("Run filter2 by protection2\n");
     Filter* filter2 = new Adapter(protection2);
     filter2->getResult();
-    std::printf("##########\t#######\t##########\n");
+    printf("##########\t#######\t##########\n");
 }
 
 void testDecoratorFilter() {
-    std::printf("##########\tDECORATOR\t##########\n");
-    std::printf("Made a 2 default filter: BlackList and ContentFiltering\n");
+    printf("##########\tDECORATOR\t##########\n");
+    printf("Made a 2 default filter: BlackList and ContentFiltering\n");
     Filter* blackListFilter = new RealFilter("BlackList");
     blackListFilter->getResult();
     Filter* contentFilteringFilter = new RealFilter("ContentFiltering");
     contentFilteringFilter->getResult();
 
-    std::printf("\nNow made decorators for this filters\n");
+    printf("\nNow made decorators for this filters\n");
     Filter* decorator1 = new FilterPercentWrapper(new FilterRecomendationWrapper(blackListFilter));
     decorator1->getResult();
     Filter* decorator2 = new FilterPercentWrapper(new FilterRecomendationWrapper(contentFilteringFilter));
     decorator2->getResult();
-    std::printf("##########\t#########\t##########\n");
+    printf("##########\t#########\t##########\n");
 }
 
 void testComposite() {
-    std::cout << "##########\tCOMPOSITE\t###########\n";
-    std::cout << "Make a 1 user\n";
+    cout << "##########\tCOMPOSITE\t###########\n";
+    cout << "Make a 1 user\n";
     Component* user1 = new User("ADEPT", "5");
-    std::cout << user1->operation() << std::endl;
+    cout << user1->operation() << std::endl;
 
-    std::cout << "\nMake a group of user1, user2 and 2 group of user3\n";
+    cout << "\nMake a group of user1, user2 and 2 group of user3\n";
     Component* user2 = new User("user2", "2");
     Component* user3 = new User("user3", "3");
     Component* list = new Composite;
     Component* group1 = new Composite;
     group1->add(user1);
     group1->add(user2);
-    std::cout << group1->operation() << std::endl;
+    cout << group1->operation() << std::endl;
     list->add(group1);
     list->add(user3);
-    std::cout << list->operation() << std::endl;
-    std::cout << "##########\t#########\t###########\n";
+    cout << list->operation() << std::endl;
+    cout << "##########\t#########\t###########\n";
     delete user1;
     delete user2;
     delete user3;
@@ -123,7 +127,7 @@ void testComposite() {
 }
 
 void testIterator() {
-    std::cout << "##########\tITERATOR\t###########\n";
+    cout << "##########\tITERATOR\t###########\n";
     Content* c1 = new Audio();
     Content* c2 = new Audio("Madonna.mp3");
     Content* c3 = new Text("Tolstoy");
@@ -141,7 +145,7 @@ void testIterator() {
         Content* c = iter->getCur();
         std::printf("%s", c->getContent().c_str());
     }
-    std::cout << "##########\t########\t###########\n";
+    cout << "##########\t########\t###########\n";
     delete c1;
     delete c2;
     delete c3;
@@ -149,5 +153,37 @@ void testIterator() {
     delete c5;
     delete letter;
 }
+
+void testBuilder() {
+
+    list<string>* recipients = new list<string>();
+    recipients->push_back("recipient1");
+    recipients->push_back("recipient2");
+    recipients->push_back("recipient3");
+    vector<Content*>* contents = new vector<Content*>();
+    contents->push_back(new Audio("Shrek_2.mp3"));
+    contents->push_back(new Picture());
+    contents->push_back(new Text("Some manga"));
+
+    cout << "##########\tBUILDER\t##########" << endl;
+    cout << "Build letter from builder:" << endl;
+    LetterBuilder* builder = new LetterBuilder();
+    builder->hiddenInfo("hidden");
+    builder->sender("Some sender");
+    builder->recipientList(recipients);
+    builder->content(contents);
+    Letter* testLetter = builder->build();
+    cout << testLetter->toString();
+    cout << endl << "Build letter from director:" << endl;
+    Director& dir = Director::getInstance();
+    Letter* let1 = dir.makeRequiredLetter();
+    cout << let1->toString() << endl;
+
+    Letter* let2 = dir.makeFullLetter();
+    cout << let2->toString() << endl;
+
+    cout << "##########\t#######\t##########" << endl;
+}
+
 
 #endif // PATTERNS_TESTPATTERNS_H

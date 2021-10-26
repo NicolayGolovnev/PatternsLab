@@ -1,6 +1,6 @@
 #include "TestPatterns.h"
 
 int main() {
-    testDecoratorFilter();
+    testBuilder();
     return 0;
 }
