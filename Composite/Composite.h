@@ -14,11 +14,9 @@ protected:
 public:
     void add(Component* component) override {
         this->child.push_back(component);
-        component->setParent(this);
     }
     void remove(Component* component) override {
         child.remove(component);
-        component->setParent(NULL);
     }
     bool isComposite() override { return true; }
     std::string operation() override {
