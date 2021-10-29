@@ -20,6 +20,7 @@ public:
     std::string getContent() override {
         return "Picture: " + value + "\n";
     }
+    Picture* clone() override { return new Picture(*this); }
 };
 
 #endif //PATTERNS_PICTURE_H

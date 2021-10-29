@@ -28,6 +28,17 @@ public:
         title = "Empty letter";
         content = new vector<Content*>();
     }
+    Letter(Letter& sample) {
+        sender = sample.sender;
+        recipientList = new list<string>();
+        *recipientList = *(sample.recipientList);
+        hiddenInfo = sample.hiddenInfo;
+        title = sample.title;
+        content = new vector<Content*>();
+        for (Content* varContent : *(sample).content)
+            content->push_back(varContent->clone());
+//        *content = *(sample.content);
+    }
 //    ~Letter() { delete recipientList; delete content; }
     void addRecipient(string recipient) {
         if (recipientList == NULL)

@@ -20,6 +20,7 @@ public:
     std::string getContent() override {
         return "Text: " + value + "\n";
     }
+    Text* clone() override { return new Text(*this); }
 };
 
 #endif //PATTERNS_TEXT_H

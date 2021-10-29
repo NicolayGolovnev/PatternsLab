@@ -20,6 +20,7 @@ public:
     std::string getContent() override {
         return "Audio: " + value + "\n";
     }
+    Audio* clone() override { return new Audio(*this); }
 };
 
 #endif //PATTERNS_AUDIO_H
