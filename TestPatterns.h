@@ -83,6 +83,11 @@ void testAdapter() {
     Filter* filter2 = new Adapter(protection2);
     filter2->getResult();
     printf("##########\t#######\t##########\n");
+
+    delete protection1;
+    delete protection2;
+    delete filter1;
+    delete filter2;
 }
 
 void testDecoratorFilter() {
@@ -99,6 +104,11 @@ void testDecoratorFilter() {
     Filter* decorator2 = new FilterPercentWrapper(new FilterRecomendationWrapper(contentFilteringFilter));
     decorator2->getResult();
     printf("##########\t#########\t##########\n");
+
+    delete blackListFilter;
+    delete contentFilteringFilter;
+    delete decorator1;
+    delete decorator2;
 }
 
 void testComposite() {
@@ -183,6 +193,13 @@ void testBuilder() {
     cout << let2->toString() << endl;
 
     cout << "##########\t#######\t##########" << endl;
+
+    delete recipients;
+    delete contents;
+    delete builder;
+    delete testLetter;
+    delete let1;
+    delete let2;
 }
 
 void testPrototype() {
@@ -200,6 +217,9 @@ void testPrototype() {
     cout << "1. " << letter->toString();
     cout << "2. " << clone->toString();
     cout << "##########\t#########\t##########" << endl;
+
+    delete letter;
+    delete clone;
 }
 
 #endif // PATTERNS_TESTPATTERNS_H
