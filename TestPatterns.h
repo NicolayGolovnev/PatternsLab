@@ -227,6 +227,7 @@ void testPrototype() {
 }
 
 void testStates() {
+    cout << "##########\tSTATE\t##########\n";
     cout << "Create a filter-training and get result from him" << endl;
     FilterTraining* ft = new FilterTraining();
     ft->printCurrentState();
@@ -235,6 +236,18 @@ void testStates() {
     cout << endl << "Now change state to execute and try run algorithm" << endl;
     ft->changeStateTo(new ExecuteState);
     result = ft->getResultsOfTraining();
+    cout << "##########\t#####\t##########\n";
+}
+
+void testStrategy() {
+    cout << "##########\tSTRATEGY\t##########\n";
+    cout << "Create algorithm based on the black-list:\n";
+    Algorithm* alg1 = new BlackList();
+    cout << alg1->runAlgorithm() << "\twhich means SPAM" << endl;
+    cout << "Now change algorithm which based on the content filtering:" << endl;
+    alg1 = new ContentFiltering();
+    cout << alg1->runAlgorithm() << "\twhich means PROBABLY SPAM" << endl;
+    cout << "##########\t########\t##########\n";
 }
 
 #endif // PATTERNS_TESTPATTERNS_H
