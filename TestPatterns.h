@@ -22,6 +22,10 @@
 #include "System/Letter.h"
 #include "Builder/LetterBuilder.h"
 #include "Builder/Director.h"
+#include "System/FilterTraining.h"
+#include "State/ReadyState.h"
+#include "State/ExecuteState.h"
+#include "State/InitState.h"
 
 using namespace std;
 
@@ -220,6 +224,17 @@ void testPrototype() {
 
     delete letter;
     delete clone;
+}
+
+void testStates() {
+    cout << "Create a filter-training and get result from him" << endl;
+    FilterTraining* ft = new FilterTraining();
+    ft->printCurrentState();
+    int result = ft->getResultsOfTraining();
+
+    cout << endl << "Now change state to execute and try run algorithm" << endl;
+    ft->changeStateTo(new ExecuteState);
+    result = ft->getResultsOfTraining();
 }
 
 #endif // PATTERNS_TESTPATTERNS_H

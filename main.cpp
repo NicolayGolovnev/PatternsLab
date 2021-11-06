@@ -1,6 +1,6 @@
 #include "TestPatterns.h"
 
 int main() {
-    testPrototype();
+    testStates();
     return 0;
 }
