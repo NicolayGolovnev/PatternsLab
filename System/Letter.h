@@ -10,10 +10,11 @@
 #include "../Iterator/IterableCollection.h"
 #include "../Iterator/IteratorContent.h"
 #include "../Prototype/ClonableCollection.h"
+#include "../Visitor/VisitableCollection.h"
 
 using namespace std;
 
-class Letter : public IterableCollection, public ClonableCollection {
+class Letter : public IterableCollection, public ClonableCollection, public VisitableCollection {
 private:
     string sender;
     list<string>* recipientList;
@@ -65,6 +66,18 @@ public:
     }
 
     Letter* clone() override { return new Letter(*this); }
+
+    const string &getSender() const { return sender; }
+
+    list<string> *getRecipientList() const { return recipientList; }
+
+    const string &getHiddenInfo() const { return hiddenInfo; }
+
+    const string &getTitle() const { return title; }
+
+    vector<Content *> *getContent() const { return content; }
+
+    std::string accept(Visitor *visitor) override { return visitor->visit(this); }
 };
 
 #endif //PATTERNS_LETTER_H

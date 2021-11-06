@@ -18,7 +18,7 @@ public:
         value = init;
     }
     std::string getContent() override {
-        return "Audio: " + value + "\n";
+        return value;
     }
     Audio* clone() override { return new Audio(*this); }
 };

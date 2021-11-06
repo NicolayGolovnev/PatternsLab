@@ -1,6 +1,6 @@
 #include "TestPatterns.h"
 
 int main() {
-    testStrategy();
+    testVisitor();
     return 0;
 }

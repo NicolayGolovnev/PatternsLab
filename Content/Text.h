@@ -18,7 +18,7 @@ public:
         value = init;
     }
     std::string getContent() override {
-        return "Text: " + value + "\n";
+        return value;
     }
     Text* clone() override { return new Text(*this); }
 };

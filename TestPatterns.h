@@ -26,6 +26,7 @@
 #include "State/ReadyState.h"
 #include "State/ExecuteState.h"
 #include "State/InitState.h"
+#include "Visitor/JSONExportVisitor.h"
 
 using namespace std;
 
@@ -248,6 +249,19 @@ void testStrategy() {
     alg1 = new ContentFiltering();
     cout << alg1->runAlgorithm() << "\twhich means PROBABLY SPAM" << endl;
     cout << "##########\t########\t##########\n";
+}
+
+void testVisitor() {
+    cout << "##########\tVISITOR\t##########" << endl;
+    cout << "Get a JSON from default letter + some added content" << endl;
+    Director& dir = Director::getInstance();
+    Letter* letter = dir.makeRequiredLetter();
+    letter->insertContent(new Audio("Shrek_2.mp3"));
+    letter->insertContent(new Picture());
+    Visitor* visitor = new JSONExportVisitor();
+    string str = visitor->visit(letter);
+    cout << "Our JSON: " << str << endl;
+    cout << "##########\t#######\t##########" << endl;
 }
 
 #endif // PATTERNS_TESTPATTERNS_H
