@@ -27,6 +27,8 @@
 #include "State/ExecuteState.h"
 #include "State/InitState.h"
 #include "Visitor/JSONExportVisitor.h"
+#include "System/Config.h"
+#include "Memento/ConfigHistory.h"
 
 using namespace std;
 
@@ -262,6 +264,23 @@ void testVisitor() {
     string str = visitor->visit(letter);
     cout << "Our JSON: " << str << endl;
     cout << "##########\t#######\t##########" << endl;
+}
+
+void testMemento() {
+    cout << "##########\tMEMENTO\t##########" << endl;
+    cout << "Make config with test state and change it after saving" << endl;
+    Config* cfg = new Config("test state");
+    ConfigHistory* cfgHistory = new ConfigHistory(cfg);
+    cfgHistory->save();
+    cfg->changeState("changing state");
+    cfgHistory->showHistory();
+    cout << "Save new state and show history" << endl;
+    cfgHistory->save();
+    cfgHistory->showHistory();
+    cout << "And we can make undo:" << endl;
+    cfgHistory->undo();
+    cfgHistory->showHistory();
+    cout << "##########\t#######\t##########";
 }
 
 #endif // PATTERNS_TESTPATTERNS_H

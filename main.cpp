@@ -1,6 +1,6 @@
 #include "TestPatterns.h"
 
 int main() {
-    testVisitor();
+    testMemento();
     return 0;
 }
