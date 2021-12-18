@@ -1,6 +1,6 @@
 #include "TestPatterns.h"
 
 int main() {
-    testMemento();
+    testCommand();
     return 0;
 }

@@ -35,6 +35,10 @@ public:
         this->state = mem->getState();
     }
 
+    std::string printState() {
+        return "State of config - " + state;
+    }
+
 };
 
 

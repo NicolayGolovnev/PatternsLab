@@ -29,6 +29,7 @@
 #include "Visitor/JSONExportVisitor.h"
 #include "System/Config.h"
 #include "Memento/ConfigHistory.h"
+#include "Command/Command.h"
 
 using namespace std;
 
@@ -281,6 +282,21 @@ void testMemento() {
     cfgHistory->undo();
     cfgHistory->showHistory();
     cout << "##########\t#######\t##########";
+}
+
+void testCommand() {
+    cout << "##########\tCOMMAND\t##########" << endl;
+    cout << "Make a config for testing our commands" << endl;
+    Config* cfg = new Config("test state");
+    Command* mementoCommand = new Command();
+    cout << "Save this state and change it on another: " + cfg->printState() << endl;
+    mementoCommand->makeBackup(cfg);
+    cfg->changeState("changing state");
+    cout << "Now we have this state: " + cfg->printState() << endl;
+    cout << "But we can undo that" << endl;
+    mementoCommand->undo(cfg);
+    cout << "And have this state: " + cfg->printState() << endl;
+    cout << "##########\t#######\t##########" << endl;
 }
 
 #endif // PATTERNS_TESTPATTERNS_H
