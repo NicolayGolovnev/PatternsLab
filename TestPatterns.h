@@ -29,7 +29,10 @@
 #include "Visitor/JSONExportVisitor.h"
 #include "System/Config.h"
 #include "Memento/ConfigHistory.h"
-#include "Command/Command.h"
+#include "Command/InvokerCommand.h"
+#include "Command/BackupCommand.h"
+#include "Command/ShowHistoryCommand.h"
+#include "Command/UndoBackupCommand.h"
 
 using namespace std;
 
@@ -288,14 +291,24 @@ void testCommand() {
     cout << "##########\tCOMMAND\t##########" << endl;
     cout << "Make a config for testing our commands" << endl;
     Config* cfg = new Config("test state");
-    Command* mementoCommand = new Command();
-    cout << "Save this state and change it on another: " + cfg->printState() << endl;
-    mementoCommand->makeBackup(cfg);
+    ConfigHistory* cfgHistory = new ConfigHistory(cfg);
+    InvokerCommand* invoker = new InvokerCommand();
+    cout << "Save this state \"" << cfg->printState() << "\" and change it on another: ";
+    invoker->setCommand(new BackupCommand(cfgHistory));
+    invoker->executeCommand();
     cfg->changeState("changing state");
+    cout << cfg->printState() << endl;
     cout << "Now we have this state: " + cfg->printState() << endl;
-    cout << "But we can undo that" << endl;
-    mementoCommand->undo(cfg);
+    cout << "In history we have last saved config:" << endl;
+    invoker->setCommand(new ShowHistoryCommand(cfgHistory));
+    invoker->executeCommand();
+    cout << "But we can undo that by undo-command" << endl;
+    invoker->setCommand(new UndoBackupCommand(cfgHistory));
+    invoker->executeCommand();
     cout << "And have this state: " + cfg->printState() << endl;
+    cout << "And in the history we have: " << endl;
+    invoker->setCommand(new ShowHistoryCommand(cfgHistory));
+    invoker->executeCommand();
     cout << "##########\t#######\t##########" << endl;
 }
 

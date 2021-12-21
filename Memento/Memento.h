@@ -41,7 +41,7 @@ public:
     }
 
     std::string getSnapshotDate() {
-        return "Snapshot00-" + this->date + "/{state = " + state.substr(0, 9) + "...}/";
+        return "Snapshot00-" + this->date + "\t/{state = " + state.substr(0, 9) + "...}/";
     }
 };
 
